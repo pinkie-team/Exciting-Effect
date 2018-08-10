@@ -1,8 +1,9 @@
-float FRICTION = 0.985;
+float FRICTION = 0.962;
 
 public class Don{
   int x,y;
   float dia;
+  float opacity;
   float speed;
   int colorH;
   boolean flag;
@@ -16,6 +17,7 @@ public class Don{
     this.x = src.x;
     this.y = src.y;
     this.speed = src.speed;
+    this.opacity = src.opacity;
     this.colorH = src.colorH;
     this.dia = src.dia;
     this.flag = src.flag;
@@ -27,40 +29,27 @@ public class Don{
     speed = _speed;
     colorH = _colorH;
     dia = 0.0;
+    opacity = 255.0;
     flag = true;
   }
 
   public void rippleDraw() {
     noFill();
   
-    if(speed > 1.0) {
-      // stroke(colorH, 60, 99, 100*(speed-1)/3);
-      // strokeWeight(4);
-      // ellipse(x,y,dia,dia);
-      text("dondon", x, y);
-      textAlign(CENTER, CENTER); 
-      textSize(dia);
-
-    }
     if(speed > 1.5) {
-      stroke(colorH, 60, 99, 100*(speed-1.5)/3);
-      strokeWeight(2);
-      ellipse(x,y,dia*0.7,dia*0.7);
-      //text("どん", x, y, dia*0.7,dia*0.7);
-    }
-    if(speed > 2.0) {
-      // stroke(colorH, 60, 99, 100*(speed-2)/3);
-      // strokeWeight(1);
-      // ellipse(x,y,dia*0.6,dia*0.6);
-      //text("ほげほげ", x, y, dia*0.6,dia*0.6);
-
+      //textSize(dia);
+      textSize(100);
+      textAlign(CENTER, CENTER);
+      fill(colorH, colorH, colorH, opacity); 
+      text("don", x, y);
     }
   }
 
   public void move() {
     dia += speed;
+    opacity -= speed * 1.2;
     speed *= FRICTION;
-    if(speed < 0.9) {
+    if(speed < 1.5) {
       flag = false;
     }
   }
@@ -69,3 +58,4 @@ public class Don{
     return flag;
   }
 }
+
