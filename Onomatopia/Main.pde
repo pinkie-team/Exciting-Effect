@@ -2,12 +2,12 @@ import processing.net.*;
 
 int SIZE = 20;
 int PORT = 10001;
-Ripple[] ripples = new Ripple[SIZE];
+Don[] ripples = new Don[SIZE];
 Server server;
 
 void settings(){
-  size(640, 480);
-  //fullScreen();
+  //size(640, 480);
+  fullScreen();
 }
 
 void setup() {
@@ -19,7 +19,7 @@ void setup() {
   frameRate(30);
   
   for(int i=0;i<SIZE;i++) {
-    ripples[i] = new Ripple();
+    ripples[i] = new Don();
   }
 }
 
@@ -46,7 +46,7 @@ void draw() {
 // mouse ver.
 void mousePressed() {
   for(int i=SIZE-1;i>0;i--) {
-    ripples[i] = new Ripple(ripples[i-1]);
+    ripples[i] = new Don(ripples[i-1]);
   }
   ripples[0].init(mouseX,mouseY,random(5,15),int(random(10,80)));
 }
@@ -54,14 +54,14 @@ void mousePressed() {
 // keyboard ver.
 void keyPressed() {
   for(int i=SIZE-1;i>0;i--) {
-    ripples[i] = new Ripple(ripples[i-1]);
+    ripples[i] = new Don(ripples[i-1]);
   }
   ripples[0].init(int(random(0,width)),int(random(0,height)),random(5,15),int(random(10,80)));
 }
 
 void makeRippleWithPython(int position){
   for(int i=SIZE-1;i>0;i--) {
-      ripples[i] = new Ripple(ripples[i-1]);
+      ripples[i] = new Don(ripples[i-1]);
    }
    ripples[0].init(int(random(0,width)),position,random(5,15),int(random(10,80)));
 }
