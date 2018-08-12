@@ -37,7 +37,6 @@ public class Don{
     noFill();
   
     if(speed > 1.5) {
-      //textSize(dia);
       textSize(100);
       textAlign(CENTER, CENTER);
       fill(colorH, colorH, colorH, opacity); 
@@ -47,7 +46,7 @@ public class Don{
 
   public void move() {
     dia += speed;
-    opacity -= speed * 1.2;
+    opacity -= speed * 1.4;
     speed *= FRICTION;
     if(speed < 1.5) {
       flag = false;

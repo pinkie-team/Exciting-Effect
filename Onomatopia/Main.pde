@@ -56,7 +56,7 @@ void keyPressed() {
   for(int i=SIZE-1;i>0;i--) {
     ripples[i] = new Don(ripples[i-1]);
   }
-  ripples[0].init(int(random(0,width)),int(random(0,height)),random(5,15),int(random(10,80)));
+  ripples[0].init(int(random(0,width)),int(random(0,height)),random(5,15),int(random(30,240)));
 }
 
 void makeRippleWithPython(int position){
