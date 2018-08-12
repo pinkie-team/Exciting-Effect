@@ -3,7 +3,7 @@ class Setting {
     fill(0, 0, 100);
     textSize(35);
     textAlign(CENTER);
-    text("Put 2 sensors in the cursor.", width/2, height/2);
+    text("Put 2 sensors on the green cursor.", width/2, height/2);
   }
 
   void showCursor(){
