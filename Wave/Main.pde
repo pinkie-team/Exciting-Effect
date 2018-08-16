@@ -1,17 +1,20 @@
 import processing.net.*;
 
 int SIZE = 20;
-int PORT = 10001;
+int SENSORPORT = 10001;
+int SETTINGPORT = 10002;
 Ripple[] ripples = new Ripple[SIZE];
-Server server;
+Server sensorServer;
+Server settingServer;
 
 void settings(){
-  size(640, 480);
-  //fullScreen();
+  //size(640, 480);
+  fullScreen();
 }
 
 void setup() {
-  server = new Server(this, PORT);
+  sensorServer = new Server(this, SENSORPORT);
+  settingServer = new Server(this, SETTINGPORT);
 
   colorMode(HSB,100);
   background(0);
@@ -26,13 +29,21 @@ void setup() {
 void draw() {
   background(0);
 
-  Client client = server.available();
+  Client sensorClient = sensorServer.available();
+  Client settingClient = settingServer.available();
 
-  if (client !=null) {
-    String whatClientSaid = client.readString();
-      if (whatClientSaid != null) {
-        println(whatClientSaid); // Pythonからのメッセージを出力
-        makeRippleWithPython(int(whatClientSaid));
+
+  if (sensorClient !=null) {
+    String positionY = sensorClient.readString();
+      if (positionY != null) {
+        println(positionY); // Pythonからのメッセージを出力
+        makeRippleWithPython(int(positionY));
+      }
+  }
+    if (settingClient !=null) {
+    String effectMode = settingClient.readString();
+      if (effectMode != null) {
+        println(effectMode); // Pythonからのメッセージを出力
       }
   }
   for(int i=0;i<SIZE;i++) {
