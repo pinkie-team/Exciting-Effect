@@ -1,9 +1,13 @@
 import processing.net.*;
+import java.util.Map;
 
 int SIZE = 20;
 int PORT = 10001;
 Don[] ripples = new Don[SIZE];
 Server server;
+
+HashMap<String,PImage> donImgs = new HashMap<String,PImage>();
+
 
 void settings(){
   //size(640, 480);
@@ -18,6 +22,11 @@ void setup() {
   smooth();
   frameRate(30);
   
+  donImgs.put("red",    loadImage("img/don_red.png"));
+  donImgs.put("blue",   loadImage("img/don_blue.png"));
+  donImgs.put("green",  loadImage("img/don_green.png"));
+  donImgs.put("orenge", loadImage("img/don_orenge.png"));
+
   for(int i=0;i<SIZE;i++) {
     ripples[i] = new Don();
   }
@@ -48,7 +57,7 @@ void mousePressed() {
   for(int i=SIZE-1;i>0;i--) {
     ripples[i] = new Don(ripples[i-1]);
   }
-  ripples[0].init(mouseX,mouseY,random(5,15),int(random(10,80)));
+  ripples[0].init(mouseX,mouseY,6,donImgs.get("red"));
 }
 
 // keyboard ver.
@@ -56,12 +65,13 @@ void keyPressed() {
   for(int i=SIZE-1;i>0;i--) {
     ripples[i] = new Don(ripples[i-1]);
   }
-  ripples[0].init(int(random(0,width)),int(random(0,height)),random(5,15),int(random(30,240)));
+  ripples[0].init(int(random(0,width)),int(random(0,height)),6,donImgs.get("red"));
 }
+
 
 void makeRippleWithPython(int position){
   for(int i=SIZE-1;i>0;i--) {
       ripples[i] = new Don(ripples[i-1]);
    }
-   ripples[0].init(int(random(0,width)),position,random(5,15),int(random(10,80)));
+   ripples[0].init(int(random(0,width)),position,6,donImgs.get("red"));
 }
