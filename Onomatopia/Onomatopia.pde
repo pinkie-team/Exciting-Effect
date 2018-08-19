@@ -9,7 +9,6 @@ public class Don{
   PImage donImg;
   
   Don() {
-    //init(0,0,0,loadImage("img/null.png"));
     init(0,0,0);
     flag = false;
   }
@@ -63,5 +62,15 @@ public class Don{
 
   public boolean getFlag() {
     return flag;
+  }
+}
+
+public String selectOnomatopiaImg(String[] keys, float sensorValue){
+  float DEMO = 0.0;
+  if(sensorValue == DEMO){
+    int index = int(random(0,keys.length));
+    return keys[index];
+  }else{
+    return "red";
   }
 }

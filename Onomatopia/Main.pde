@@ -7,7 +7,7 @@ Don[] ripples = new Don[SIZE];
 Server server;
 
 HashMap<String,PImage> donImgs = new HashMap<String,PImage>();
-
+String[] keys;
 
 void settings(){
   //size(640, 480);
@@ -26,6 +26,7 @@ void setup() {
   donImgs.put("blue",   loadImage("img/don_blue.png"));
   donImgs.put("green",  loadImage("img/don_green.png"));
   donImgs.put("orenge", loadImage("img/don_orenge.png"));
+  keys = donImgs.keySet().toArray(new String[donImgs.size()]);
 
   for(int i=0;i<SIZE;i++) {
     ripples[i] = new Don();
@@ -57,7 +58,7 @@ void mousePressed() {
   for(int i=SIZE-1;i>0;i--) {
     ripples[i] = new Don(ripples[i-1]);
   }
-  ripples[0].init(mouseX,mouseY,6,donImgs.get("red"));
+  ripples[0].init(mouseX,mouseY,6,donImgs.get(selectOnomatopiaImg(keys,0.0)));
 }
 
 // keyboard ver.
@@ -65,7 +66,7 @@ void keyPressed() {
   for(int i=SIZE-1;i>0;i--) {
     ripples[i] = new Don(ripples[i-1]);
   }
-  ripples[0].init(int(random(0,width)),int(random(0,height)),6,donImgs.get("red"));
+  ripples[0].init(int(random(0,width)),int(random(0,height)),6,donImgs.get(selectOnomatopiaImg(keys,0.0)));
 }
 
 
