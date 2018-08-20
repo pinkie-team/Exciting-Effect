@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.ArrayList;
+
 float FRICTION = 0.962;
 
 public class Don{
@@ -67,10 +70,31 @@ public class Don{
 
 public String selectOnomatopiaImg(String[] keys, float sensorValue){
   float DEMO = 0.0;
+  float BOUND = 0.01;
+  int randomIndex;
+  List<String> k = new ArrayList<String>();
+  
   if(sensorValue == DEMO){
-    int index = int(random(0,keys.length));
-    return keys[index];
+    for(String key: keys){
+      k.add(key);
+    }
+
+    
+  }else if(Math.abs(sensorValue) >= BOUND && sensorValue != DEMO){
+    for(String key: keys){
+      if((key.indexOf("don")) != -1){
+        k.add(key);
+      }
+    }
+
   }else{
-    return "red";
+    for(String key: keys){
+      if((key.indexOf("kan")) != -1){
+        k.add(key);
+      }
+    }
   }
+  
+  randomIndex = int(random(0,k.size()));
+  return k.get(randomIndex);
 }

@@ -63,7 +63,14 @@ void mousePressed() {
   for(int i=SIZE-1;i>0;i--) {
     ripples[i] = new Don(ripples[i-1]);
   }
-  ripples[0].init(mouseX,mouseY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,0.0)));
+  switch (mouseButton){
+  case LEFT:
+    ripples[0].init(mouseX,mouseY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,0.1)));
+    break;
+  case RIGHT:
+    ripples[0].init(mouseX,mouseY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,0.001)));
+    break;
+  }
 }
 
 // keyboard ver.
