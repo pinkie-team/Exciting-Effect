@@ -27,7 +27,11 @@ void setup() {
 }
 
 void draw() {
-  settingDraw()
+  if (index == 0){
+    settingDraw();
+  } else if (index == 1){
+    onomatopiaDraw();
+  }
 }
 
 // setting
@@ -92,25 +96,35 @@ void onomatopiaDraw() {
 // onomatopia functions
 // mouse ver.
 void mousePressed() {
-  for(int i=SIZE-1;i>0;i--) {
-    ripples[i] = new Don(ripples[i-1]);
-  }
-  switch (mouseButton){
-  case LEFT:
-    ripples[0].init(mouseX,mouseY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,0.1)));
-    break;
-  case RIGHT:
-    ripples[0].init(mouseX,mouseY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,0.001)));
-    break;
+  if (index == 1){
+    for(int i=SIZE-1;i>0;i--) {
+      ripples[i] = new Don(ripples[i-1]);
+    }
+    switch (mouseButton){
+    case LEFT:
+      ripples[0].init(mouseX,mouseY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,0.1)));
+      break;
+    case RIGHT:
+      ripples[0].init(mouseX,mouseY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,0.001)));
+      break;
+    }
   }
 }
 
 // keyboard ver.
 void keyPressed() {
-  for(int i=SIZE-1;i>0;i--) {
-    ripples[i] = new Don(ripples[i-1]);
+  if (key == 'S' ||key =='s'){
+    settingDraw();
+    index = 0;
+  } else (key == 'O'||key == 'o'){
+    onomatopediaSetup();
+    index = 1;
+  } else if (index == 1){
+    for(int i=SIZE-1;i>0;i--) {
+      ripples[i] = new Don(ripples[i-1]);
+    }
+    ripples[0].init(int(random(0,width)),int(random(0,height)),6,onomatopiaImgs.get(selectOnomatopiaImg(keys,0.0)));
   }
-  ripples[0].init(int(random(0,width)),int(random(0,height)),6,onomatopiaImgs.get(selectOnomatopiaImg(keys,0.0)));
 }
 
 void makeRippleWithPython(int position){
