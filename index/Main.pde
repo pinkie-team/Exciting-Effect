@@ -24,6 +24,8 @@ void settings(){
 void setup() {
   settingSetup();
   index = 0;
+  server = new Server(this, PORT);
+
 }
 
 void draw() {
@@ -50,7 +52,6 @@ void settingDraw() {
 
 // onomatopedia
 void onomatopediaSetup() {
-  server = new Server(this, PORT);
 
   colorMode(HSB,100);
   background(0);
@@ -113,10 +114,10 @@ void mousePressed() {
 
 // keyboard ver.
 void keyPressed() {
-  if (key == 'S' ||key =='s'){
+  if (key == 'S' ||key =='s') {
     settingDraw();
     index = 0;
-  } else (key == 'O'||key == 'o'){
+  } else if(key == 'O'||key == 'o') {
     onomatopediaSetup();
     index = 1;
   } else if (index == 1){
