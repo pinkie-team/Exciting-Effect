@@ -1,4 +1,5 @@
 int index;
+String onomatopiaMode;
 
 // setting
 Setting set = new Setting();
@@ -67,6 +68,11 @@ void onomatopediaSetup() {
   onomatopiaImgs.put("kan_green",  loadImage("img/kan_green.png"));
   onomatopiaImgs.put("kan_orenge", loadImage("img/kan_orenge.png"));
   onomatopiaImgs.put("kan_yellow", loadImage("img/kan_yellow.png"));
+  onomatopiaImgs.put("pati_green", loadImage("img/pati_green.png"));
+  onomatopiaImgs.put("pati_pink",  loadImage("img/pati_pink.png"));
+  onomatopiaImgs.put("pati_red",   loadImage("img/pati_red.png"));
+  onomatopiaImgs.put("pati_white", loadImage("img/pati_white.png"));
+  onomatopiaImgs.put("pati_yellow",loadImage("img/pati_yellow.png"));
   keys = onomatopiaImgs.keySet().toArray(new String[onomatopiaImgs.size()]);
 
   for(int i=0;i<SIZE;i++) {
@@ -106,7 +112,11 @@ void mousePressed() {
     }
     switch (mouseButton){
     case LEFT:
-      ripples[0].init(mouseX,mouseY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,0.1)));
+      if(onomatopiaMode == "DON"){
+        ripples[0].init(mouseX,mouseY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,0.1)));
+      }else if(onomatopiaMode == "PATI"){
+        ripples[0].init(mouseX,mouseY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,-1.0)));
+      }
       break;
     case RIGHT:
       ripples[0].init(mouseX,mouseY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,0.001)));
@@ -122,7 +132,10 @@ void keyPressed() {
     index = 0;
   } else if(key == 'O'||key == 'o') {
     onomatopediaSetup();
+    onomatopiaMode = "DON";
     index = 1;
+  } else if(key == 'P'||key == 'p') {
+    onomatopiaMode = "PATI";
   } else if (index == 1){
     for(int i=SIZE-1;i>0;i--) {
       ripples[i] = new Don(ripples[i-1]);
@@ -136,5 +149,10 @@ void makeRippleWithPython(int positionX, int positionY){
       ripples[i] = new Don(ripples[i-1]);
    }
    //ripples[0].init(int(random(0,width)),positionX,6,onomatopiaImgs.get("don_red"));
-   ripples[0].init(positionX,positionY,6,onomatopiaImgs.get("don_red"));
+   if(onomatopiaMode == "DON"){
+     ripples[0].init(positionX,positionY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,0.0)));
+   }
+   else if(onomatopiaMode == "PATI"){
+     ripples[0].init(positionX,positionY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,-1.0)));
+   }
 }

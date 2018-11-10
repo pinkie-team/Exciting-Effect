@@ -71,6 +71,7 @@ public class Don{
 public String selectOnomatopiaImg(String[] keys, float sensorValue){
   float DEMO = 0.0;
   float BOUND = 0.01;
+  float PATI = -1.0;
   int randomIndex;
   List<String> k = new ArrayList<String>();
   
@@ -79,6 +80,12 @@ public String selectOnomatopiaImg(String[] keys, float sensorValue){
       k.add(key);
     }
 
+  }else if(sensorValue == PATI){
+    for(String key: keys){
+      if((key.indexOf("pati")) != -1){
+        k.add(key);
+      }
+    }
     
   }else if(Math.abs(sensorValue) >= BOUND && sensorValue != DEMO){
     for(String key: keys){
