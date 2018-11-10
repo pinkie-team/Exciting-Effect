@@ -82,8 +82,11 @@ void onomatopiaDraw() {
   if (client !=null) {
     String whatClientSaid = client.readString();
       if (whatClientSaid != null) {
-        println(whatClientSaid); // Pythonからのメッセージを出力
-        makeRippleWithPython(int(whatClientSaid));
+        String s[] = splitTokens(whatClientSaid,",");
+        println(whatClientSaid);
+        println(s[0]); // Pythonからのメッセージを出力
+        //makeRippleWithPython(int(whatClientSaid));
+        makeRippleWithPython(int(s[0]),int(s[1]));
       }
   }
   for(int i=0;i<SIZE;i++) {
@@ -128,9 +131,10 @@ void keyPressed() {
   }
 }
 
-void makeRippleWithPython(int position){
+void makeRippleWithPython(int positionX, int positionY){
   for(int i=SIZE-1;i>0;i--) {
       ripples[i] = new Don(ripples[i-1]);
    }
-   ripples[0].init(int(random(0,width)),position,6,onomatopiaImgs.get("don_red"));
+   //ripples[0].init(int(random(0,width)),positionX,6,onomatopiaImgs.get("don_red"));
+   ripples[0].init(positionX,positionY,6,onomatopiaImgs.get("don_red"));
 }
