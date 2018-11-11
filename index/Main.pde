@@ -150,9 +150,12 @@ void makeRippleWithPython(int positionX, int positionY){
    }
    //ripples[0].init(int(random(0,width)),positionX,6,onomatopiaImgs.get("don_red"));
    if(onomatopiaMode == "DON"){
-     ripples[0].init(positionX,positionY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,0.0)));
+     ripples[0].init(positionX,positionY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,0.0)));          
    }
    else if(onomatopiaMode == "PATI"){
      ripples[0].init(positionX,positionY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,-1.0)));
-   }
+     ripples[1].init(mouseX-int(random(200,400)),mouseY-int(random(200,400)),6,onomatopiaImgs.get(selectOnomatopiaImg(keys,-1.0)));
+     ripples[2].init(mouseX+int(random(200,400)),mouseY+int(random(200,400)),6,onomatopiaImgs.get(selectOnomatopiaImg(keys,-1.0)));
+     ripples[3].init(mouseX-int(random(200,400)),mouseY+int(random(200,400)),6,onomatopiaImgs.get(selectOnomatopiaImg(keys,-1.0)));
+ }
 }
