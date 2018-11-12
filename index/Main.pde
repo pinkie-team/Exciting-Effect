@@ -107,9 +107,6 @@ void onomatopiaDraw() {
 // onomatopia functions
 // mouse ver.
 void mousePressed() {
-  int marginX = int(width)/5;
-  int marginY = int(height)/5;
-  
   if (index == 1){
     for(int i=SIZE-1;i>0;i--) {
       ripples[i] = new Don(ripples[i-1]);
@@ -149,19 +146,20 @@ void keyPressed() {
 }
 
 void makeRippleWithPython(int positionX, int positionY){
-  int marginX = int(width)/10;
-  int marginY = int(height)/10;
+  int marginX = int(width)/5;
+  int marginY = int(height)/5;
   for(int i=SIZE-1;i>0;i--) {
       ripples[i] = new Don(ripples[i-1]);
    }
    //ripples[0].init(int(random(0,width)),positionX,6,onomatopiaImgs.get("don_red"));
    if(onomatopiaMode == "DON"){
-     ripples[0].init(positionX,positionY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,0.0)));          
+     ripples[0].init(positionX,positionY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,0.1)));          
    }
    else if(onomatopiaMode == "PATI"){ 
      ripples[0].init(mouseX,mouseY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,-1.0)));
-     ripples[1].init(mouseX-marginX,mouseY-marginY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,-1.0)));
-     ripples[2].init(mouseX-marginX,mouseY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,-1.0)));
-     ripples[3].init(mouseX,mouseY+marginY,6,onomatopiaImgs.get(selectOnomatopiaImg(keys,-1.0)));
+     ripples[1].init(int(random(marginX,width))-marginX,int(random(0,height)),6,onomatopiaImgs.get(selectOnomatopiaImg(keys,-1.0)));
+     ripples[2].init(int(random(marginX,width))-marginX,int(random(0,height)),6,onomatopiaImgs.get(selectOnomatopiaImg(keys,-1.0)));
+     ripples[3].init(int(random(marginX,width))-marginX,int(random(0,height)),6,onomatopiaImgs.get(selectOnomatopiaImg(keys,-1.0)));
+
    }
 }
